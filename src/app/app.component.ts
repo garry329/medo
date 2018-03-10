@@ -7,6 +7,7 @@ import { Angular2TokenService, A2tUiModule } from 'angular2-token';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { SignInPage } from '../pages/sign-in/sign-in';
+import { SignUpPage } from '../pages/sign-up/sign-up';
 
 @Component({
   templateUrl: 'app.html'
@@ -27,7 +28,8 @@ export class MyApp {
       { title: 'Home', component: HomePage },
       { title: 'List', component: ListPage },
       { title: 'Sign In', component: SignInPage },
-      
+      { title: 'Sign Up', component: SignUpPage }
+
     ];
 
   }

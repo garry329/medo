@@ -8,18 +8,22 @@ import { Angular2TokenService, A2tUiModule } from 'angular2-token';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
-import { SignInPage } from '../pages/sign-in/sign-in';
 
+import { SignInPage } from '../pages/sign-in/sign-in';
+import { SignUpPage } from '../pages/sign-up/sign-up';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+
+
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ListPage,
-    SignInPage
-  ],
+
+    SignInPage,
+    SignUpPage ],
   imports: [
     BrowserModule,
     HttpModule,
@@ -31,8 +35,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     HomePage,
     ListPage,
-    SignInPage
-  ],
+
+    SignInPage,
+
+    SignUpPage
+],
   providers: [
     Angular2TokenService,
     StatusBar,
