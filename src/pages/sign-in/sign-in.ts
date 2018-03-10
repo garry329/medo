@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home'
 import { AlertController } from 'ionic-angular';
 import { Angular2TokenService, SignInData } from 'angular2-token';
-
+import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 /**
  * Generated class for the SignInPage page.
  *
@@ -19,8 +19,13 @@ import { Angular2TokenService, SignInData } from 'angular2-token';
 export class SignInPage {
 	email:string;
    password:string;
+   private signInForm: FormGroup;
    signInData: SignInData = <SignInData>{};
-  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController, private formBuilder: FormBuilder) {
+    this.signInForm = this.formBuilder.group({
+      email: ['', Validators.required],
+      password: ['', Validators.required],
+    });
   }
 
   ionViewDidLoad() {

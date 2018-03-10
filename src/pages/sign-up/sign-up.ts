@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { AlertController } from 'ionic-angular';
 import { Angular2TokenService, RegisterData } from 'angular2-token';
+import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 /**
  * Generated class for the SignUpPage page.
  *
@@ -19,8 +20,14 @@ export class SignUpPage {
 	email:string;
 	password:string;
 	passwordConfirmation:string;
+	private registerForm : FormGroup;
 	registerData: RegisterData = <RegisterData>{};
-  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController, private formBuilder: FormBuilder) {
+  	this.registerForm = this.formBuilder.group({
+      email: ['', Validators.required],
+      password: ['', Validators.required],
+      passwordConfirmation: ['',Validators.required]
+    });
   }
 
   ionViewDidLoad() {

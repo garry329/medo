@@ -15,23 +15,23 @@
 
 <ion-content padding>
 	<ion-list>
-		<form (ngSubmit)="signUp()">
+		<form [formGroup]="registerForm" (ngSubmit)="signUp()">
 		  <ion-item>
 		    <ion-label color="primary" floating>Email</ion-label>
-		    <ion-input type="email"  [(ngModel)]="registerData.email" name="email"></ion-input>
+		    <ion-input type="email"  [(ngModel)]="registerData.email" formControlName="email"></ion-input>
 		  </ion-item>
 
 		  <ion-item>
 		    <ion-label color="primary" floating>Password</ion-label>
-		    <ion-input type="password" [(ngModel)]="registerData.password" name="password" ></ion-input>
+		    <ion-input type="password" [(ngModel)]="registerData.password" formControlName="password" ></ion-input>
 		  </ion-item>
 
 		  <ion-item>
 		    <ion-label color="primary" floating>Password Confirmation</ion-label>
-		    <ion-input type="password" [(ngModel)]="registerData.passwordConfirmation" name="passwordConfirmation" ></ion-input>
+		    <ion-input type="password" [(ngModel)]="registerData.passwordConfirmation" formControlName="passwordConfirmation" ></ion-input>
 		  </ion-item>
 
-		  <button ion-button full type="submit">Submit</button>
+		  <button ion-button [disabled]="!registerForm.valid" full type="submit">Submit</button>
 		</form>
 	</ion-list>
 </ion-content>
