@@ -18,17 +18,17 @@
 		<form (ngSubmit)="signUp()">
 		  <ion-item>
 		    <ion-label color="primary" floating>Email</ion-label>
-		    <ion-input type="email"  [(ngModel)]="email" name="email"></ion-input>
+		    <ion-input type="email"  [(ngModel)]="registerData.email" name="email"></ion-input>
 		  </ion-item>
 
 		  <ion-item>
 		    <ion-label color="primary" floating>Password</ion-label>
-		    <ion-input type="password" [(ngModel)]="password" name="password" ></ion-input>
+		    <ion-input type="password" [(ngModel)]="registerData.password" name="password" ></ion-input>
 		  </ion-item>
 
 		  <ion-item>
 		    <ion-label color="primary" floating>Password Confirmation</ion-label>
-		    <ion-input type="password" [(ngModel)]="passwordConfirmation" name="passwordConfirmation" ></ion-input>
+		    <ion-input type="password" [(ngModel)]="registerData.passwordConfirmation" name="passwordConfirmation" ></ion-input>
 		  </ion-item>
 
 		  <button ion-button full type="submit">Submit</button>

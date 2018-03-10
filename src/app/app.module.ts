@@ -21,9 +21,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     HomePage,
     ListPage,
-
     SignInPage,
-    SignUpPage ],
+    SignUpPage 
+    ],
   imports: [
     BrowserModule,
     HttpModule,
@@ -35,9 +35,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     HomePage,
     ListPage,
-
     SignInPage,
-
     SignUpPage
 ],
   providers: [
