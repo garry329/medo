@@ -6,6 +6,7 @@ import { Angular2TokenService, A2tUiModule } from 'angular2-token';
 
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
+import { SignUpPage } from '../pages/sign-up/sign-up';
 
 @Component({
   templateUrl: 'app.html'
@@ -24,7 +25,8 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage }
+      { title: 'List', component: ListPage },
+      { title: 'Sign Up', component: SignUpPage }
     ];
 
   }
