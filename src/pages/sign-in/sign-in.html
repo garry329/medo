@@ -16,11 +16,11 @@
 <form (ngSubmit)="signIn()">
 	<ion-item>
     <ion-label color="primary" floating>Email</ion-label>
-    <ion-input type="email" [(ngModel)]="email" name="email"></ion-input>
+    <ion-input type="email" [(ngModel)]="signInData.email" name="email"></ion-input>
   </ion-item>
       <ion-item>
     <ion-label color="primary" floating>Password</ion-label>
-    <ion-input  type="password" [(ngModel)]="password" name="password"></ion-input>
+    <ion-input  type="password" [(ngModel)]="signInData.password" name="password"></ion-input>
   </ion-item>
       <button ion-button type="submit" block>Sign In</button>
     </form>
