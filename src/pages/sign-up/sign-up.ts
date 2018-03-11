@@ -22,7 +22,8 @@ export class SignUpPage {
 	password:string;
 	output: any;
 	passwordConfirmation:string;
-  emailBool:boolean;passwordBool:boolean;confirmPasswordBool:boolean;
+  private emailBool:boolean;passwordBool:boolean;confirmPasswordBool:boolean;
+  emailError:string;passwordError:string;confirmPasswordError:string;
 	private registerForm : FormGroup;
 	registerData: RegisterData = <RegisterData>{};
   constructor(private _tokenService: Angular2TokenService,public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController, private formBuilder: FormBuilder,private toastCtrl: ToastController) {
@@ -62,22 +63,59 @@ export class SignUpPage {
     toast.present();
   }	
   
-  
-
+  checkError(type){
+    if(type == 'email'){
+      if(this.emailBool){
+        return true
+      }
+    }else if(type == 'password'){
+      if(this.passwordBool){
+        return true;
+      }
+    }else if(type == 'password_confirmation'){
+      if(this.passwordConfirmation){
+        return true;
+      }
+    }
+    return false;
+  }
+  error(type,errorMessage){
+    if(type == 'email'){
+      this.emailBool = true;
+      this.emailError = errorMessage;
+    }else if(type == 'password'){
+      this.passwordBool = true;
+      this.passwordError = errorMessage;
+    }else if(type == 'passwordConfirmation'){
+      this.confirmPasswordBool = true;
+      this.passwordConfirmation = errorMessage;
+    }else{
+      return false;
+    }
+    return true;
+  }
 	signUp(){
 
 		this._tokenService.registerAccount({
     email:                this.registerData.email,
     password:             this.registerData.password,
+
     passwordConfirmation: this.registerData.passwordConfirmation}).subscribe(
 		    res => {
-          this.presentToast('Signed In Successfully')
+          this.presentToast('Signed Up Successfully')
           this.navCtrl.push(HomePage);
 
         },    
 		    error => {
-          console.log(error['_body'])
-          this.presentToast('Galat Daal Dia')
+          var map = JSON.parse(error['_body']);
+          console.log(map['errors'])
+          var errorMap = map['errors'];
+          console.log(errorMap)
+          for (let i in errorMap){
+            console.log(i)
+            this.error(i,errorMap[i][0])
+          }
+          this.presentToast('Please Fill the Feilds Correctly')
         }
 		);
 		// console.log(this.registerData.email)

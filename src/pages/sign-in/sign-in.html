@@ -18,10 +18,11 @@
     <ion-label color="primary" floating>Email</ion-label>
     <ion-input type="email" [(ngModel)]="signInData.email" formControlName="email"></ion-input>
   </ion-item>
-      <ion-item>
-    <ion-label color="primary" floating>Password</ion-label>
-    <ion-input  type="password" [(ngModel)]="signInData.password" formControlName="password"></ion-input>
+            <ion-item>
+      <ion-label color="primary" floating>Password</ion-label>
+      <ion-input  type="password" [(ngModel)]="signInData.password" formControlName="password"></ion-input>
   </ion-item>
+     
       <button ion-button  [disabled]="!signInForm.valid" type="submit" block>Sign In</button>
     </form>
 </ion-content>
