@@ -38,9 +38,9 @@ export class SignUpPage {
 
 	signUp(){
 		// this._tokenService.registerAccount({
-		//     email:  this.email,
-		//     password: this.password,
-		//     passwordConfirmation: this.passwordConfirmation
+		//     email:  registerData.email,
+		//     password: registerData.password,
+		//     passwordConfirmation: registerData.passwordConfirmation
 		// }).subscribe(
 		//     res =>      console.log(res),
 		//     error =>    console.log(error)
