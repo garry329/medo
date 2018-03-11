@@ -2,7 +2,10 @@ import { Component,ViewChild } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Angular2TokenService, A2tUiModule } from 'angular2-token';
 import { Slides } from 'ionic-angular';
-
+import { Validators } from '@angular/forms';
+import {  FormGroup, FormArray, FormBuilder } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { Customer } from './customer.interface';
 
 @Component({
   selector: 'page-home',
@@ -10,12 +13,15 @@ import { Slides } from 'ionic-angular';
 })
 export class HomePage {
   @ViewChild(Slides) slides: Slides;
+  public myForm: FormGroup;
 
-  constructor(private _tokenService: Angular2TokenService,public navCtrl: NavController) {
-  	this._tokenService.init(
-  		{
-  			registerAccountPath:'/auth'
-  		});
+  constructor(private _fb: FormBuilder,public navCtrl: NavController) {
+     this.myForm = this._fb.group({
+            name: ['', [Validators.required, Validators.minLength(5)]],
+            addresses: this._fb.array([
+                this.initAddress(),
+            ])
+        });
   }
 
   slideChanged() {
@@ -31,15 +37,29 @@ export class HomePage {
     
   }
 
-signUp(){
-	this._tokenService.registerAccount({
-    email:                'example@example.org',
-    password:             'secretPassword',
-    passwordConfirmation: 'secretPassword'
-}).subscribe(
-    res =>      console.log(res),
-    error =>    console.log(error)
-);
-}
+  initAddress() {
+        return this._fb.group({
+            street: ['', Validators.required],
+            postcode: ['']
+        });
+    }
+
+    addAddress() {
+        const control = <FormArray>this.myForm.controls['addresses'];
+        control.push(this.initAddress());
+    }
+
+    removeAddress(i: number) {
+        const control = <FormArray>this.myForm.controls['addresses'];
+        control.removeAt(i);
+    }
+
+    save(model: Customer) {
+        // call API to save
+        // ...
+        console.log(model);
+    }
+
+
 
 }
