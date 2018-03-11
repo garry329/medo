@@ -21,10 +21,20 @@ export class SignInPage {
    password:string;
    private signInForm: FormGroup;
    signInData: SignInData = <SignInData>{};
-  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController, private formBuilder: FormBuilder) {
+  constructor(private _tokenService: Angular2TokenService,public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController, private formBuilder: FormBuilder) {
     this.signInForm = this.formBuilder.group({
       email: ['', Validators.required],
       password: ['', Validators.required],
+    });
+    this._tokenService.init({
+      apiPath:'http://localhost:3000',
+      signInPath: 'auth/sign_in',
+      globalOptions: {
+            headers: {
+                'Content-Type':     'application/json',
+                'Accept':           'application/json'
+            }
+        }
     });
   }
 
@@ -40,12 +50,20 @@ export class SignInPage {
     alert.present();
   }
   signIn(){
+
+    this._tokenService.signIn({
+    email:                this.signInData.email,
+    password:             this.signInData.password
+    }).subscribe(
+        res =>      this.navCtrl.push(HomePage),
+        error =>    this.showAlert()
+    );
     
-  	console.log("dasdasdasdasdasdasd")
-  	console.log(this.signInData.email);
-	//console.log(this.password);
-	this.navCtrl.push(HomePage);
-	this.showAlert();
+ //  	console.log("dasdasdasdasdasdasd")
+ //  	console.log(this.signInData.email);
+	// //console.log(this.password);
+	// this.navCtrl.push(HomePage);
+	// this.showAlert();
 //   this._tokenService.signIn({
 //     email:    this.email,
 //     password: this.password
