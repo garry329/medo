@@ -29,6 +29,13 @@ export class HomePage {
     console.log('Current index is', currentIndex);
   }
 
+  checkRemove(formName){
+    if (formName.controls.addresses.controls.length > 1){
+      return true;
+    }else{
+      return false;
+    }
+  }
   ionViewWillEnter(){
     // global.setTimeout(function(){
     //   // this.slides.slideNext(500, true)

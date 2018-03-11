@@ -32,27 +32,86 @@
       <h2>Slide 3</h2>
     </ion-slide>
   </ion-slides> -->
+ 
+  <ion-list>
+    <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm)">
+      <ion-item>
+            <ion-label color="primary" floating>Name</ion-label>
+            <ion-input type="text" formControlName="name"></ion-input>
+      </ion-item>
+      <small *ngIf="!myForm.controls.name.valid" class="text-danger" style="color: red;margin: auto">
+        <ion-label style="text-align: center;">
+          Name is required (minimum 5 characters).
+        </ion-label>
+      </small>
+
+      <ion-list formArrayName="addresses">
+          <ion-list *ngFor="let address of myForm.controls.addresses.controls; let i=index" class="panel panel-default">
+            <ion-item class="panel-heading">
+              <span>Address {{i + 1}}</span>
+              <span class="glyphicon glyphicon-remove pull-right" *ngIf="checkRemove(myForm)" (click)="removeAddress(i)">Remove</span>
+            </ion-item>
+            <ion-list class="panel-body" [formGroupName]="i">
+              <ion-item class="form-group col-xs-6">
+                <ion-label color="primary" floating>street</ion-label>
+                <ion-input type="text" class="form-control" formControlName="street">
+                  </ion-input>
+                
+              </ion-item>
+              <small [hidden]="myForm.controls.addresses.controls[i].controls.street.valid" class="text-danger" style="color: red;margin: auto">
+                <ion-label style="text-align: center;">
+                    Street is required
+                </ion-label>
+              </small>
+
+              <ion-item>
+                <ion-label color="primary" floating>postcode</ion-label>
+                <ion-input type="text" class="form-control" formControlName="postcode"></ion-input>
+              </ion-item>
+            </ion-list>
+          </ion-list>
+
+          <ion-item class="margin-20">
+          <button (click)="addAddress()" style="cursor: default" ion-button full>
+            Add Address
+          </button>
+          </ion-item>
+
+          <ion-item class="margin-20">
+            <button type="submit" class="btn btn-primary pull-right" [disabled]="!myForm.valid" ion-button full>Submit</button>
+          </ion-item>
+          <ion-item class="clearfix"></ion-item>
+
+          <ion-item>
+            <div class="margin-20">
+              <div>myForm details:-</div>
+              <pre>Is myForm valid?: <br>{{myForm.valid | json}}</pre>
+              <pre>form value: <br>{{myForm.value | json}}</pre>
+            </div>
+          </ion-item>
+      </ion-list>
+
+    </form>
+  </ion-list>
 
   <div class="container">
   <div class="row">
     <div class="col-xs-12">
-      <div class="margin-20">
-        <h4>Add customer</h4>
-      </div>
+      
       <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm)">
-        <div class="form-group">
-          <label>Name</label>
-          <input type="text" class="form-control" formControlName="name">
+        <!-- <div class="form-group">
+          <ion-label>Name</ion-label>
+          <ion-input type="text" class="form-control" formControlName="name"></ion-input>
           <small *ngIf="!myForm.controls.name.valid" class="text-danger">
               Name is required (minimum 5 characters).
             </small>
-        </div>
+        </div> -->
         <!--addresses-->
-        <div formArrayName="addresses">
+        <!-- <div formArrayName="addresses">
           <div *ngFor="let address of myForm.controls.addresses.controls; let i=index" class="panel panel-default">
             <div class="panel-heading">
               <span>Address {{i + 1}}</span>
-              <span class="glyphicon glyphicon-remove pull-right" *ngIf="myForm.controls.addresses.controls.length > 1" (click)="removeAddress(i)"></span>
+              <span class="glyphicon glyphicon-remove pull-right" *ngIf="checkRemove(myForm)" (click)="removeAddress(i)">Remove</span>
             </div>
             <div class="panel-body" [formGroupName]="i">
               <div class="form-group col-xs-6">
@@ -74,18 +133,9 @@
           <a (click)="addAddress()" style="cursor: default">
             Add another address +
           </a>
-        </div>
+        </div> -->
 
-        <div class="margin-20">
-          <button type="submit" class="btn btn-primary pull-right" [disabled]="!myForm.valid">Submit</button>
-        </div>
-        <div class="clearfix"></div>
-
-        <div class="margin-20">
-          <div>myForm details:-</div>
-          <pre>Is myForm valid?: <br>{{myForm.valid | json}}</pre>
-          <pre>form value: <br>{{myForm.value | json}}</pre>
-        </div>
+        
       </form>
     </div>
   </div>
