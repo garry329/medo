@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
-import { AlertController } from 'ionic-angular';
+import { AlertController , ToastController } from 'ionic-angular';
 import { Angular2TokenService, RegisterData } from 'angular2-token';
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';
+
 /**
  * Generated class for the SignUpPage page.
  *
@@ -21,9 +22,10 @@ export class SignUpPage {
 	password:string;
 	output: any;
 	passwordConfirmation:string;
+  emailBool:boolean;passwordBool:boolean;confirmPasswordBool:boolean;
 	private registerForm : FormGroup;
 	registerData: RegisterData = <RegisterData>{};
-  constructor(private _tokenService: Angular2TokenService,public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController, private formBuilder: FormBuilder) {
+  constructor(private _tokenService: Angular2TokenService,public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController, private formBuilder: FormBuilder,private toastCtrl: ToastController) {
   	this.registerForm = this.formBuilder.group({
       email: ['', Validators.required],
       password: ['', Validators.required],
@@ -46,7 +48,21 @@ export class SignUpPage {
     console.log('ionViewDidLoad SignUpPage');
   }
 
-  	
+  presentToast(mess) {
+    let toast = this.toastCtrl.create({
+      message: mess,
+      duration: 3000,
+      position: 'Bottom'
+    });
+
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+
+    toast.present();
+  }	
+  
+  
 
 	signUp(){
 
@@ -54,32 +70,21 @@ export class SignUpPage {
     email:                this.registerData.email,
     password:             this.registerData.password,
     passwordConfirmation: this.registerData.passwordConfirmation}).subscribe(
-		    res =>      console.log(res),
-		    error =>    console.log(error)
+		    res => {
+          this.presentToast('Signed In Successfully')
+          this.navCtrl.push(HomePage);
+
+        },    
+		    error => {
+          console.log(error['_body'])
+          this.presentToast('Galat Daal Dia')
+        }
 		);
 		// console.log(this.registerData.email)
 		// console.log(this.registerData.password)
 		// console.log(this.registerData.passwordConfirmation)
 		// this.showAlert('bewakoof','Password Sahi Daal Dia kar')
 		// this.navCtrl.push(HomePage);
-
-// 		this.output = null;
-
-//         this._tokenService.registerAccount(this.registerData).subscribe(
-//             res => {
-//                 this.registerData  = <RegisterData>{};
-//                 this.output        = res;
-//             }, error => {
-//                 this.registerData  = <RegisterData>{};
-//                 this.output        = error;
-//             }
-//         );
-// 		// console.log(this.registerData.email)
-// 		// console.log(this.registerData.password)
-// 		// console.log(this.registerData.passwordConfirmation)
-// 		// this.showAlert('bewakoof','Password Sahi Daal Dia kar')
-// 		// this.navCtrl.push(HomePage);
-// >>>>>>> 4f25defe92c58a2ece12a7abb581e6399465e3dd
 		
 	}
 
