@@ -9,6 +9,8 @@ import { ListPage } from '../pages/list/list';
 import { SignInPage } from '../pages/sign-in/sign-in';
 import { SignUpPage } from '../pages/sign-up/sign-up';
 import { PrescriptionPage } from '../pages/prescription/prescription';
+import { ScannerPage } from '../pages/scanner/scanner';
+import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
 
 @Component({
   templateUrl: 'app.html'
@@ -29,7 +31,8 @@ export class MyApp {
       { title: 'Home', component: HomePage },
       { title: 'List', component: ListPage },
       { title: 'Sign In', component: SignInPage },
-      { title: 'Sign Up', component: SignUpPage }
+      { title: 'Sign Up', component: SignUpPage },
+      { title: 'Scan' , component: ScannerPage}
 
     ];
 

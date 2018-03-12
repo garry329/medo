@@ -11,10 +11,12 @@ import { ListPage } from '../pages/list/list';
 import { SignInPage } from '../pages/sign-in/sign-in';
 import { SignUpPage } from '../pages/sign-up/sign-up';
 import { PrescriptionPage } from '../pages/prescription/prescription';
+import { ScannerPage } from '../pages/scanner/scanner';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
+import { Camera } from '@ionic-native/camera';
+import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
 
 
 @NgModule({
@@ -24,7 +26,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ListPage,
     SignInPage,
     SignUpPage,
-    PrescriptionPage 
+    PrescriptionPage,
+    ScannerPage 
     ],
   imports: [
     BrowserModule,
@@ -39,12 +42,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ListPage,
     SignInPage,
     SignUpPage,
-    PrescriptionPage
+    PrescriptionPage,
+    ScannerPage
 ],
   providers: [
     Angular2TokenService,
     StatusBar,
+    Camera,
     SplashScreen,
+    QRScanner,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
