@@ -67,7 +67,7 @@ export class SignInPage {
     }).subscribe(
         res =>{
           console.log(res)
-          this.presentToast('Signed Up Successfully');
+          this.presentToast('Signed In Successfully');
           this.navCtrl.setRoot(PrescriptionPage, {}, {animate: true, direction: 'forward'})
         },
         error =>{

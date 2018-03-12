@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { HomePage } from '../home/home';
+import { PrescriptionPage } from '../prescription/prescription';
 import { AlertController , ToastController } from 'ionic-angular';
 import { Angular2TokenService, RegisterData } from 'angular2-token';
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';
@@ -103,7 +103,7 @@ export class SignUpPage {
     passwordConfirmation: this.registerData.passwordConfirmation}).subscribe(
 		    res => {
           this.presentToast('Signed Up Successfully')
-          this.navCtrl.push(HomePage);
+          this.navCtrl.setRoot(PrescriptionPage, {}, {animate: true, direction: 'forward'})
 
         },    
 		    error => {
