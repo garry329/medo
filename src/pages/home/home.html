@@ -7,92 +7,29 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h3>Ionic Menu Starter</h3>
-
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+<ion-content>
+  <!-- <h3>Ionic Menu Starter</h3> -->
 
   <!-- <button ion-button secondary menuToggle>Toggle Menu</button>
-  <button ion-button (click)="signUp()">Sign Up</button>
+  <button ion-button (click)="signUp()">Sign Up</button> -->
 
 
   <ion-slides (ionSlideDidChange)="slideChanged()" pager>
 
-    <ion-slide style="background-color: green">
+    <ion-slide style="background-image: url('../assets/imgs/1.jpg');color:#fff;background-size: 100vw 100vh;">
       <h2>Slide 1</h2>
     </ion-slide>
 
-    <ion-slide style="background-color: blue">
+    <ion-slide style="background-image: url('../assets/imgs/2.jpg');color:#fff;background-size: 100vw 100vh;">
       <h2>Slide 2</h2>
     </ion-slide>
 
-    <ion-slide style="background-color: red">
+    <ion-slide style="background-image: url('../assets/imgs/3.jpg');color:#fff;background-size: 100vw 100vh;">
       <h2>Slide 3</h2>
     </ion-slide>
-  </ion-slides> -->
+  </ion-slides>
  
-  <ion-list>
-    <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm)">
-      <ion-item>
-            <ion-label color="primary" floating>Name</ion-label>
-            <ion-input type="text" formControlName="name"></ion-input>
-      </ion-item>
-      <small *ngIf="!myForm.controls.name.valid" class="text-danger" style="color: red;margin: auto">
-        <ion-label style="text-align: center;">
-          Name is required (minimum 5 characters).
-        </ion-label>
-      </small>
-
-      <ion-list formArrayName="addresses">
-          <ion-list *ngFor="let address of myForm.controls.addresses.controls; let i=index" class="panel panel-default">
-            <ion-item class="panel-heading">
-              <span>Address {{i + 1}}</span>
-              <button color="danger" *ngIf="checkRemove(myForm)" (click)="removeAddress(i)" ion-button>Remove</button>
-            </ion-item>
-            <ion-list class="panel-body" [formGroupName]="i">
-              <ion-item class="form-group col-xs-6">
-                <ion-label color="primary" floating>street</ion-label>
-                <ion-input type="text" class="form-control" formControlName="street">
-                  </ion-input>
-                <span [hidden]="myForm.controls.addresses.controls[i].controls.street.valid" class="text-danger" style="color: red;margin: auto;position: absolute;">
-                    <ion-label style="text-align: center;">
-                        Street is required
-                    </ion-label>
-                </span>
-              </ion-item>
-              
-
-              <ion-item>
-                <ion-label color="primary" floating>postcode</ion-label>
-                <ion-input type="text" class="form-control" formControlName="postcode"></ion-input>
-              </ion-item>
-            </ion-list>
-          </ion-list>
-
-          <ion-item class="margin-20">
-          <button (click)="addAddress()" style="cursor: default" ion-button full>
-            Add Address
-          </button>
-          </ion-item>
-
-          <ion-item class="margin-20">
-            <button type="submit" class="btn btn-primary pull-right" [disabled]="!myForm.valid" ion-button full>Submit</button>
-          </ion-item>
-          <ion-item class="clearfix"></ion-item>
-
-          <ion-item>
-            <div class="margin-20">
-              <div>myForm details:-</div>
-              <pre>Is myForm valid?: <br>{{myForm.valid | json}}</pre>
-              <pre>form value: <br>{{myForm.value | json}}</pre>
-            </div>
-          </ion-item>
-      </ion-list>
-
-    </form>
-  </ion-list>
+  
 
  
 

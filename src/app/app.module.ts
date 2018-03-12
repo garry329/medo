@@ -8,9 +8,10 @@ import { Angular2TokenService, A2tUiModule } from 'angular2-token';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
-
 import { SignInPage } from '../pages/sign-in/sign-in';
 import { SignUpPage } from '../pages/sign-up/sign-up';
+import { PrescriptionPage } from '../pages/prescription/prescription';
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -22,7 +23,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     ListPage,
     SignInPage,
-    SignUpPage 
+    SignUpPage,
+    PrescriptionPage 
     ],
   imports: [
     BrowserModule,
@@ -36,7 +38,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     ListPage,
     SignInPage,
-    SignUpPage
+    SignUpPage,
+    PrescriptionPage
 ],
   providers: [
     Angular2TokenService,

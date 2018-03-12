@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { HomePage } from '../home/home'
+import { PrescriptionPage } from '../prescription/prescription';
 import { AlertController , ToastController } from 'ionic-angular';
 import { Angular2TokenService, SignInData } from 'angular2-token';
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';
@@ -29,12 +29,7 @@ export class SignInPage {
     this._tokenService.init({
       apiPath:'http://localhost:3000',
       signInPath: 'auth/sign_in',
-      globalOptions: {
-            headers: {
-                'Content-Type':     'application/json',
-                'Accept':           'application/json'
-            }
-        }
+      
     });
   }
 
@@ -71,8 +66,9 @@ export class SignInPage {
     password:             this.signInData.password
     }).subscribe(
         res =>{
-          this.presentToast('Signed Up Successfully')
-          this.navCtrl.push(HomePage)
+          console.log(res)
+          this.presentToast('Signed Up Successfully');
+          this.navCtrl.setRoot(PrescriptionPage, {}, {animate: true, direction: 'forward'})
         },
         error =>{
           this.presentToast('Invalid Credentials')
